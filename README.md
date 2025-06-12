@@ -1,35 +1,33 @@
-# UNO Card Game (1v1):flower_playing_cards:
-**UNO** is an American shedding-type card game that is played with a specially printed deck. The game's general principles put it into the crazy eights family of card games, and it is similar to the traditional European game mau-mau. It has been a Mattel brand since 1992.
+# Jogo de Cartas UNO (1x1):flower_playing_cards:
+**UNO** é um jogo de cartas americano, do tipo "slides", jogado com um baralho impresso especialmente para esse fim. Os princípios gerais do jogo o colocam na família dos oitos malucos, e é semelhante ao tradicional jogo europeu mau-mau. É uma marca da Mattel desde 1992.
 
-🔴 Technologies used, **HTML, CSS, JS**
+Tecnologias utilizadas: **HTML, CSS, JS**
 
 <img src="head.png">
 
-
-# Welcome to UNO!:peanuts:
+# Bem-vindo ao UNO!:peanuts:
 [![forthebadge play-here-uno](play-here-uno.svg)](https://abhisheks008.github.io/UNO/) <img src="https://github.com/abhisheks008/UNO/blob/main/images/uno!.png" height="60px">
 
-# How this game works:hourglass:
+# Como funciona este jogo:hourglass:
 
-- The game will start automatically upon loading.
+- O jogo começará automaticamente ao carregar.
 
-- The player and the CPU will each begin with 7 cards, and a number card will begin the Play Pile. The player will go first. The player can either click on a card of matching value or color to play it, play an Action Card (Reverse, Skip, Draw 2, Draw 4, Wild), or if no playable cards are available, click on the Draw Pile for a new card and forfeit their turn.
+- O jogador e a CPU começarão com 7 cartas cada, e uma carta numerada iniciará a Pilha de Jogo. O jogador começará primeiro. O jogador pode clicar em uma carta de valor ou cor correspondente para jogá-la, jogar uma Carta de Ação (Reverter, Pular, Comprar 2, Comprar 4, Curinga) ou, se não houver cartas jogáveis ​​disponíveis, clicar na Pilha de Compra para obter uma nova carta e perder a vez.
 
-- Next the CPU will play, either playing an appropriate card or taking one from the Draw Pile.
+- Em seguida, a CPU jogará, jogando uma carta apropriada ou pegando uma da Pilha de Compra.
 
-- Draw 2 (+2) and Draw 4 (+4) cards will automatically add their amount to the victim's hand and advance the turn. Reverse and Skip cards will both skip the victim's turn (since there are only two players, Reverse essentially becomes a Skip). Wild cards may be played at any time.
+- Comprar 2 (+2) e Comprar 4 (+4) cartas adicionarão automaticamente seu valor à mão da vítima e avançarão a vez. Cartas de Reverter e Pular pularão a vez da vítima (como há apenas dois jogadores, Reverter se torna essencialmente um Pular). Cartas Curinga podem ser jogadas a qualquer momento.
 
-- The immediate goal is to be the first one to have no cards, at which time the opposing player's cards will be totaled and added to their score according to the following rules:
-   >numbered cards 0-9 = face value </br>
-   >Reverse, Skip, +2 = 20pts</br>
-   >Wild, Wild +4 = 50pts
+- O objetivo imediato é ser o primeiro a ficar sem cartas. Nesse momento, as cartas do adversário serão somadas e adicionadas à sua pontuação de acordo com as seguintes regras:
+>cartas numeradas de 0 a 9 = valor nominal</br>
+>Reverso, Pular, +2 = 20 pontos</br>
+>Coringa, Coringa +4 = 50 pontos
 
-- **The first player to reach 100 loses the game.**
+- **O primeiro jogador a chegar a 100 perde o jogo.**
 
+## Algoritmo e Fluxo de Trabalho :abacus:
 
-## Algorithm and Workflow :abacus:
-
-Number Cards are straight forward:
+Cartas Numeradas são simples:
 ```js
 red8 = { <br>
     value: 8,<br>
@@ -40,7 +38,7 @@ red8 = { <br>
 }
 ```
 
-Action Cards will be assigned a value for the sake of logic comparisons, in ascending order of danger to the CPU in the event it loses:
+As Cartas de Ação receberão um valor para fins de comparação lógica, em ordem crescente de perigo para a CPU em caso de derrota:
 ```js
 greenReverse = {<br>
     value: 10,<br>
@@ -82,28 +80,27 @@ wild4 = {<br>
     drawValue: 4<br>
 }
 ```
-- The gameController will use the changeTurn and drawValue properties to determine whose turn it is and whether or not any cards need to be drawn.
+- O gameController usará as propriedades changeTurn e drawValue para determinar de quem é a vez e se alguma carta precisa ser comprada.
 
-## How CPU is playing!:computer:
-The CPU will have two arrays it keeps track of two arrays:
+## Como a CPU está jogando!:computer:
+A CPU terá dois arrays, dos quais ela monitora dois arrays:
 ```js
 cpuHand = []
 playableCards = []
 ```
 
-Based on the last card played and it's properties, the CPU will loop through it's cpuHand array, and any card that matches either the value or color of the last card played will be pushed into the playableCards array along with any wilds the CPU may be holding.
+Com base na última carta jogada e suas propriedades, a CPU percorrerá seu array cpuHand, e qualquer carta que corresponda ao valor ou à cor da última carta jogada será inserida no array playableCards, juntamente com quaisquer curingas que a CPU possa ter.
 
-Since part of the fun and strategy is knowing when to play your Action Cards, the CPU will randomize their strategy each turn, determined by a Math.Random() variable. If the randomizer is above 0.5, the CPU will prioritize playing Action Cards in an effort to keep their losing score low. If the randomizer is below 0.5, the CPU will hold onto their Action Cards for a later turn and instead play Number Cards. There will also be logic to skip the randomizer once the player gets below a certain number of cards, at which point the CPU will only prioritize Action Cards.
+Como parte da diversão e da estratégia é saber quando jogar suas Cartas de Ação, a CPU randomizará sua estratégia a cada turno, determinada por uma variável Math.Random(). Se o randomizador estiver acima de 0,5, a CPU priorizará o jogo de Cartas de Ação, em um esforço para manter a pontuação de perdas baixa. Se o randomizador estiver abaixo de 0,5, a CPU manterá suas Cartas de Ação para um turno posterior e, em vez disso, jogará Cartas Numéricas. Também haverá lógica para pular o randomizador quando o jogador atingir um determinado número de cartas, momento em que a CPU priorizará apenas as Cartas de Ação.
 
+## Como o Jogador se sente!:red_haired_woman::man:
+Semelhante a como o computador controla quais cartas pode jogar, o mesmo acontece com o Controlador de Jogo para o jogador. Caso o jogador clique em uma carta inválida, uma mensagem aparecerá informando isso ao jogador.
 
-## How the Player feels!:red_haired_woman::man:
-Similar to how the computer will keep track of which cards it can play, so will the gameController do for the player. Should the player click an invalid card, a message will pop up telling the player so. 
+Essas mensagens e a tela de Fim de Jogo serão os únicos avisos na tela, em um esforço para minimizar distrações e permitir que o fluxo do jogo seja o centro das atenções.
 
-These messages and the Game Over screen will be the only on screen prompts in an effort to minimize distractions and allow the flow of the game to take front and center.
+(Para evitar cliques indesejados, poderá haver uma mensagem "Tem certeza?" se o jogador clicar na Pilha de Compras enquanto segura cartas jogáveis.)
 
-(In an effort to protect against unintended clicks, there might be an "Are you sure?" message if the player clicks the Draw Pile while holding playable cards.)
-
-The goal is to create an aesthetically pleasing, minimal-yet-satisfying game loop that is relaxing and entertaining and that - hopefully - users will want to play again and again.
+O objetivo é criar um loop de jogo esteticamente agradável, minimalista, porém satisfatório, que seja relaxante e divertido e que – com sorte – os usuários queiram jogar repetidamente.
 
 ---------------------------------------------
 
