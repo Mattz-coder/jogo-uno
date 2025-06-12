@@ -104,5 +104,5 @@ O objetivo é criar um loop de jogo esteticamente agradável, minimalista, poré
 
 ---------------------------------------------
 
-### ©️ código por , 2025 :link: <a href = "https://mattz-coder.github.io/jogo-uno/ </a>
+### ©️ código por , 2025 :link: <a href = "https://mattz-coder.github.io/jogo-uno/" </a>
 
