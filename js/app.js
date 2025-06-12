@@ -498,8 +498,8 @@ const endRound = (winner) => {
     
     // show end of round element & format it based on who won
     endOfroundDom.classList.remove('hidden')
-    if (winner === playerHand) roundDom.textContent = 'You won the round!'
-    else roundDom.textContent = 'CPU won the round...'
+    if (winner === playerHand) roundDom.textContent = 'VOCÊ venceu o round'
+    else roundDom.textContent = 'I.A venceu o round'
     
     // hide end of round element after 2 seconds
     setTimeout(() => {
@@ -524,11 +524,11 @@ const endGame = () => {
 
     if (playerScore > gameOver) {
         loseFX.play()
-        gameDom.textContent = 'CPU won the game... Play again?'
+        gameDom.textContent = 'I.A venceu o jogo, jogar novamente?'
     }  
     else {
         winGameFX.play()
-        gameDom.textContent = 'You won the game! Play again?'
+        gameDom.textContent = 'Você venceu, jogar novamente?'
     }
 
     // add event listener to 'play again' button
